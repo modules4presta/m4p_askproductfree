@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LICENCE
  *
@@ -7,10 +8,11 @@
  *
  * IN CASE OF ANY PROBLEM CONTACT AUTHOR.
  *
- *  @author    Jakub Przepióra (kontakt@nice-code.eu)
- *  @copyright nice-code.pl
+ *  @author    Jakub Przepióra (jakub@modules4presta.io)
+ *  @copyright modules4presta.io
  *  @license   ALL RIGHTS RESERVED
  */
+
 class Modules4PrestaMarketingAskProductFree
 {
     public static function checkServerRequirements()

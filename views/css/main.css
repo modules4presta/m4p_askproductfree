@@ -30,20 +30,3 @@
 }
 
 /* -- Modules for Presta default css -- */
-
-.mfp_topinfobar {
-    position: fixed;
-    z-index: 1000;
-    top:0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background-color: #000;
-}
-.mfp_topinfobar--content {
-    text-align: center;
-    padding: 10px;
-}
-.mfp_topinfobar--content p {
-    margin-bottom: 0;
-}
