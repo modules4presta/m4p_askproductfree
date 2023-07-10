@@ -169,8 +169,8 @@ class m4p_askproductfree extends Module
             'fields_value' => array(
 
                 'm4p_askproductfree_switch' => Configuration::get('m4p_askproductfree_switch'),
-                'm4p_askproductfree_switch' => Configuration::get('m4p_askproductfree_phone'),
-                'm4p_askproductfree_switch' => Configuration::get('m4p_askproductfree_company'),
+                'm4p_askproductfree_phone' => Configuration::get('m4p_askproductfree_phone'),
+                'm4p_askproductfree_company' => Configuration::get('m4p_askproductfree_company'),
             ),
             'languages' => $this->context->controller->getLanguages(),
         );
@@ -200,24 +200,37 @@ class m4p_askproductfree extends Module
 
         }
         require_once dirname(__FILE__) . '/classes/Modules4PrestaMarketingAskProductFree.php';
-        $this->context->smarty->assign(array(
+        $this->context->smarty->assign([
             'modules_ads' => Modules4PrestaMarketingAskProductFree::getAdsFromModules4Presta()
-        ));
+        ]);
         $this->content .= $this->context->smarty->fetch(_PS_MODULE_DIR_.$this->name.'/views/templates/admin/m4p_ads.tpl');
 
-        $this->context->smarty->assign(array(
+        $this->context->smarty->assign([
             'content' => $this->content,
             'modules_ads' => Modules4PrestaMarketingAskProductFree::getAdsFromModules4Presta()
-        ));
+        ]);
         $output .= $this->displayForm().$this->content;
 
         return $output ;
     }
 
-    public function hookDisplayHeader()
+    public function hookdisplayHeader($params)
     {
+        $this->page_name = Dispatcher::getInstance()->getController();
+        if ($this->page_name == 'product') {
+            $this->context->controller->addCSS($this->_path . 'views/main.css', 'all');
+            $this->context->controller->addJS($this->_path . 'views/main.js');
+            Media::addJsDef(
+                [
+                    'm4p_askproductfree_frontcontroller' => $this->context->link->getModuleLink('aapfree', 'askAboutProd', ['askAboutProd' => 1]),
+                    'm4p_askproductfree_confirmation' => $this->l('Your e-mail has been sent successfully'),
+                    'm4p_askproductfree_problem' => $this->l('Your e-mail could not be sent. Please check the name and e-mail address and try again.'),
+                    'm4p_askproductfree_title' => $this->l('Question about product'),
 
 
+                ]
+            );
+        }
     }
     public function hookDisplayProductAdditionalInfo($params)
     {
@@ -226,11 +239,10 @@ class m4p_askproductfree extends Module
         }
 
         $product = new Product((int)Tools::getValue('id_product'), false, $this->context->language->id);
-        $thumbnail = Product::getCover((int)$product->id);
+
 
         $this->context->smarty->assign(array(
-            'm4p_askproductfree_link' => $this->context->link,
-            'm4p_askproductfree_product_thumbnail' => (int)$product->id . '-' . (int)$thumbnail['id_image'],
+
             'm4p_askproductfreeproduct' => $product,
 
         ));

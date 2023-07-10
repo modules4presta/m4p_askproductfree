@@ -1,32 +1,5 @@
 /* Modules4Presta.io default css */
 
-#uninstall-popup .modal-content {
-    border-radius: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
 
-#uninstall-popup .modal-header {
-    background-color: #dc3545;
-    color: #fff;
-    border-bottom: none;
-}
-
-#uninstall-popup .modal-footer {
-    border-top: none;
-}
-
-#uninstall-popup .modal-footer button {
-    border-radius: 0;
-}
-
-#uninstall-popup .modal-footer button.btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-
-#uninstall-popup .modal-footer button.btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-}
 
 /* -- Modules for Presta default css -- */

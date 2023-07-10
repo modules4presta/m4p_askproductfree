@@ -18,7 +18,7 @@ class m4p_switch_invoiceajaxModuleFrontController extends ModuleFrontController
 {
     public function initContent()
     {
-        if (Module::isEnabled('aapfree') && Tools::getValue('action') == 'sendQuestion' && Tools::getValue('secure_key') == $this->module->secure_key) {
+        if (Tools::getValue('action') == 'askAboutProd' && Tools::getValue('secure_key') == $this->module->secure_key) {
 
             $customerMail = Tools::getValue('email');
             $author = Tools::getValue('author');
