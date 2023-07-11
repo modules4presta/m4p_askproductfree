@@ -9,27 +9,27 @@
             <div class="send_askproduct_form_content col-lg-12" id="send_askproduct_form_content">
                 <div class="form_container">
              
-                    <input type="hidden" name="askproduct_id_product">
+                    <input type="hidden" name="askproduct_id_product" id="askproduct_id_product" value="{$product.id_product}">
                     {if !Context::getContext()->customer->islogged()}
                         <fieldset class="form-group">
                             <label class="form-control-label" for="askproduct_email">{l s='Your e-mail' mod='m4p_askproductfree'}</label>
-                            <input id="askproduct_email" name="askproduct_email" type="text" value="" class="form-control"/>
+                            <input id="askproduct_email" name="askproduct_email" type="email" value="" class="form-control"/>
                         </fieldset>
                     {else}
                         <fieldset class="form-group">
                             <label class="form-control-label" for="askproduct_email">{l s='Your e-mail' mod='m4p_askproductfree'}</label>
-                            <input id="askproduct_email" name="askproduct_email" type="text" value="{Context::getContext()->customer->email}" class="form-control"/>
+                            <input id="askproduct_email" name="askproduct_email" type="email" value="{Context::getContext()->customer->email}" class="form-control"/>
                         </fieldset>
                     {/if}
                     
-                    {if m4p_askproductfree_phone}
+                    {if $m4p_askproductfree_company}
                         <fieldset class="form-group">
                             <label class="form-control-label" for="askproduct_company">{l s='Company' mod='m4p_askproductfree'}</label>
                             <input id="askproduct_company" name="askproduct_company" type="text" value="" class="form-control"/>
                         </fieldset>
                     {/if}
-                    
-                    {if m4p_askproductfree_phone}
+                
+                    {if $m4p_askproductfree_phone}
                         <fieldset class="form-group">
                             <label class="form-control-label" for="askproduct_phone">{l s='Phone number' mod='m4p_askproductfree'}</label>
                             <input id="askproduct_phone" name="askproduct_phone" type="text" value="" class="form-control"/>
@@ -43,9 +43,9 @@
                     <textarea name="askproduct_question" id="askproduct_question" class="form-control"></textarea>
                 </fieldset>
             </div>
-            <button class="btn btn-primary" id="send_ask_about_product">
+            <a class="btn btn-primary" id="send_ask_about_product">
                 {l s='Send' mod='m4p_askproductfree'}
-            </button>
+            </a>
         </div>
     </div>
 </div>

@@ -214,26 +214,27 @@ class m4p_askproductfree extends Module
         return $output ;
     }
 
-    public function hookdisplayHeader($params)
+    public function hookDisplayHeader($params)
     {
-        $this->page_name = Dispatcher::getInstance()->getController();
-        if ($this->page_name == 'product') {
-            $this->context->controller->addCSS($this->_path . 'views/main.css', 'all');
-            $this->context->controller->addJS($this->_path . 'views/main.js');
-            Media::addJsDef(
-                [
-                    'm4p_askproductfree_frontcontroller' => $this->context->link->getModuleLink('aapfree', 'askAboutProd', ['askAboutProd' => 1]),
-                    'm4p_askproductfree_confirmation' => $this->l('Your e-mail has been sent successfully'),
-                    'm4p_askproductfree_problem' => $this->l('Your e-mail could not be sent. Please check the name and e-mail address and try again.'),
-                    'm4p_askproductfree_title' => $this->l('Question about product'),
+
+  
+        
+        Media::addJsDef(
+            [
+                'm4p_askproductfree_frontcontroller' => $this->context->link->getModuleLink('m4p_askproductfree', 'ajax',['askAboutProd'=>1]),
+                'm4p_askproductfree_confirmation' => $this->l('Your e-mail has been sent successfully'),
+                'm4p_askproductfree_problem' => $this->l('Your e-mail could not be sent. Please check the name and e-mail address and try again.'),
+                'm4p_askproductfree_title' => $this->l('Question about product'),
 
 
-                ]
-            );
-        }
+            ]
+        );
+        $this->context->controller->addJS($this->_path . 'views/js/main.js');
     }
     public function hookDisplayProductAdditionalInfo($params)
     {
+        if (Configuration::get('m4p_askproductfree_switch') != 1)
+            return;
         if (Tools::getValue('controller') == 'product' && Tools::getValue('action') == 'quickview') {
             return;
         }
@@ -244,7 +245,9 @@ class m4p_askproductfree extends Module
         $this->context->smarty->assign(array(
 
             'm4p_askproductfreeproduct' => $product,
-
+            'm4p_askproductfree_phone' => Configuration::get('m4p_askproductfree_phone'),
+            'm4p_askproductfree_switch' => Configuration::get('m4p_askproductfree_switch'),
+            'm4p_askproductfree_company' => Configuration::get('m4p_askproductfree_company')
         ));
 
         return $this->display(__FILE__, 'views/templates/hook/askproduct.tpl');
