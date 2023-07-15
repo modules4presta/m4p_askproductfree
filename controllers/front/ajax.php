@@ -73,7 +73,7 @@ class m4p_askproductfreeajaxModuleFrontController extends ModuleFrontController
                 
             ) {
          
-                var_dump(_PS_MODULE_DIR_. 'm4p_askproductfree/mails/');
+              
                 die('Error send');
             }
             die('1');
