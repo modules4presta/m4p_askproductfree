@@ -1,6 +1,6 @@
-<a id="send_askproduct" class="" href="#send_askproduct">
-    <i class="material-icons">help_outline</i>{l s='Ask about product' mod='m4p_askproductfree'}
-</a>
+<h5 id="send_askproduct" class="" href="#send_askproduct">
+   {l s='Ask about product' mod='m4p_askproductfree'}
+</h5>
 
 <div>
     <div id="send_askproduct_form" class="card">

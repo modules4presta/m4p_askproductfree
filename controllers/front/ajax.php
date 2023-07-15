@@ -26,15 +26,16 @@ class m4p_askproductfreeajaxModuleFrontController extends ModuleFrontController
             $company = Tools::getValue('company');
             $phone = Tools::getValue('phone');
             $id_product = Tools::getValue('id_product');
-            $ask = Tools::getValue('question');
+            $ask = Tools::getValue('ask');
 
             if (!$customerMail || !$id_product) {
+                var_dump("error email or product id");
                 die('0');
             }
 
             $isValidEmail = Validate::isEmail($customerMail);
             if (false === $isValidEmail) {
-                die('0');
+                die('error email');
             }
 
 
@@ -49,29 +50,31 @@ class m4p_askproductfreeajaxModuleFrontController extends ModuleFrontController
                 '{customerMail}' => $customerMail,
                 '{ask}' => $ask
             );
-
+ 
             /* Email sending */
             if (
                 !Mail::Send(
-                    (int) Tools::getValue('id_lang'),
-                    'ask_product',
-                    sprintf('Question about'.$product->name ),
-                    $templateVars,
-                    Configuration::get('PS_SHOP_EMAIL'),
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    dirname(__FILE__) . '/mails/',
-                    false,
-                    Context::getContext()->shop->id,
-                    $customerMail,
-                    $customerMail,
-
+        (int) Tools::getValue('id_lang'),
+        'ask_product',
+        'Zapytanie o '.$product->name,
+        $templateVars,
+        Configuration::get('PS_SHOP_EMAIL'),
+        null,
+        null,
+        null,
+        null,
+        null,
+        dirname(__FILE__) . '/mails/',
+        false,
+        Context::getContext()->shop->id,
+        $customerMail,
+        $customerMail,
                 )
+                
             ) {
-                die('0');
+         
+                var_dump(_PS_MODULE_DIR_. 'm4p_askproductfree/mails/');
+                die('Error send');
             }
             die('1');
         }
@@ -80,3 +83,4 @@ class m4p_askproductfreeajaxModuleFrontController extends ModuleFrontController
 
 
 }
+

@@ -30,7 +30,7 @@ class m4p_askproductfree extends Module
     {
         $this->name = 'm4p_askproductfree';
         $this->tab = 'administration';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->author = 'Modules4Presta.io';
         $this->need_instance = 0;
         $this->_path = _PS_MODULE_DIR_.$this->name;
@@ -84,7 +84,7 @@ class m4p_askproductfree extends Module
                     'label' => $this->l('Active module'),
                     'name' => 'm4p_askproductfree_switch',
                     'is_bool' => true,
-                    'desc' => $this->l('On/Off connect with Clarity'),
+                    'desc' => $this->l('On/Off module'),
                     'values' => array(
                         array(
                             'id' => 'active_on',
@@ -233,15 +233,14 @@ class m4p_askproductfree extends Module
     }
     public function hookDisplayProductAdditionalInfo($params)
     {
-        if (Configuration::get('m4p_askproductfree_switch') != 1)
+        if (Configuration::get('m4p_askproductfree_switch') != 1 )
             return;
         if (Tools::getValue('controller') == 'product' && Tools::getValue('action') == 'quickview') {
             return;
         }
-
+        
         $product = new Product((int)Tools::getValue('id_product'), false, $this->context->language->id);
-
-
+      
         $this->context->smarty->assign(array(
 
             'm4p_askproductfreeproduct' => $product,
