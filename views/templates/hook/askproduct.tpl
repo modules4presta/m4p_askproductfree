@@ -1,8 +1,8 @@
-<h5 id="send_askproduct" class="" href="#send_askproduct">
+<a id="send_askproduct" class="" href="#send_askproduct_form">
    {l s='Ask about product' mod='m4p_askproductfree'}
-</h5>
+</a>
 
-<div>
+<div style="display:none;">
     <div id="send_askproduct_form" class="card">
         <div class="card-block">
 
@@ -32,20 +32,24 @@
                     {if $m4p_askproductfree_phone}
                         <fieldset class="form-group">
                             <label class="form-control-label" for="askproduct_phone">{l s='Phone number' mod='m4p_askproductfree'}</label>
-                            <input id="askproduct_phone" name="askproduct_phone" type="text" value="" class="form-control"/>
+                            <input id="askproduct_phone" name="askproduct_phone" type="tel" value="" class="form-control"/>
                         </fieldset>
                     {/if}
                 </div>
             </div>
-           <div class="col-lg-12">
+            <div class="col-lg-12">
                 <fieldset class="form-group">
                     <label class="form-control-label" for="question">{l s='Your question' mod='m4p_askproductfree'}</label>
                     <textarea name="askproduct_question" id="askproduct_question" class="form-control"></textarea>
                 </fieldset>
             </div>
-            <a class="btn btn-primary" id="send_ask_about_product">
-                {l s='Send' mod='m4p_askproductfree'}
-            </a>
+            <div class="col-lg-12 ">
+                <div class="d-flex justify-content-center align-items-center">
+                    <a class="btn btn-primary btn-lg" id="send_ask_about_product">
+                        {l s='Send' mod='m4p_askproductfree'}
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

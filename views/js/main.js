@@ -1,4 +1,8 @@
 $('document').ready(function () {    
+
+   $("#send_askproduct").fancybox({
+     hideOnContentClick: false,
+   });
     $("#send_ask_about_product").click(function () {
         sendEmailAboutProduct();
     });

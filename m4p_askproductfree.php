@@ -229,6 +229,7 @@ class m4p_askproductfree extends Module
 
             ]
         );
+        $this->context->controller->addJqueryPlugin('fancybox');
         $this->context->controller->addJS($this->_path . 'views/js/main.js');
     }
     public function hookDisplayProductAdditionalInfo($params)
