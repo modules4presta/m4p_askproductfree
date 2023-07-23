@@ -30,7 +30,7 @@ class m4p_askproductfree extends Module
     {
         $this->name = 'm4p_askproductfree';
         $this->tab = 'administration';
-        $this->version = '1.0.1';
+        $this->version = '1.0.3';
         $this->author = 'Modules4Presta.io';
         $this->need_instance = 0;
         $this->_path = _PS_MODULE_DIR_.$this->name;

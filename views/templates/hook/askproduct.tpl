@@ -4,6 +4,9 @@
 
 <div style="display:none;">
     <div id="send_askproduct_form" class="card">
+        <div class="card-title">
+            Zapytanie dotyczy produktu: {$product->name}
+        </div>
         <div class="card-block">
 
             <div class="send_askproduct_form_content col-lg-12" id="send_askproduct_form_content">
