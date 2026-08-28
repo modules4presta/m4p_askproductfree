@@ -13,74 +13,97 @@
  *  @license   ALL RIGHTS RESERVED
  */
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
 
 class m4p_askproductfreeajaxModuleFrontController extends ModuleFrontController
 {
     public function initContent()
     {
-        if (Configuration::get('m4p_askproductfree_switch') != 1)
-            die('0');
-        if (Tools::getValue('action') == 'askAboutProd') {
-
-            $customerMail = Tools::getValue('email');
-            $company = Tools::getValue('company');
-            $phone = Tools::getValue('phone');
-            $id_product = Tools::getValue('id_product');
-            $ask = Tools::getValue('ask');
-
-            if (!$customerMail || !$id_product) {
-                var_dump("error email or product id");
-                die('0');
-            }
-
-            $isValidEmail = Validate::isEmail($customerMail);
-            if (false === $isValidEmail) {
-                die('error email');
-            }
-
-
-
-            $product = new Product((int) $id_product, false, Tools::getValue('id_lang'));
-            $productLink = Context::getContext()->link->getProductLink($product);
-
-            $templateVars = array(
-                '{product}' => $product->name,
-                '{phone}' => $phone,
-                '{company}' => $company,
-                '{customerMail}' => $customerMail,
-                '{ask}' => $ask
-            );
- 
-            /* Email sending */
-            if (
-                !Mail::Send(
-        (int) Tools::getValue('id_lang'),
-        'ask_product',
-        'Zapytanie o '.$product->name,
-        $templateVars,
-        Configuration::get('PS_SHOP_EMAIL'),
-        null,
-        null,
-        null,
-        null,
-        null,
-        dirname(__FILE__) . '/mails/',
-        false,
-        Context::getContext()->shop->id,
-        $customerMail,
-        $customerMail,
-                )
-                
-            ) {
-         
-              
-                die('Error send');
-            }
-            die('1');
+        if (Configuration::get('m4p_askproductfree_switch') != 1) {
+            $this->renderJson(false, $this->module->l('Module is disabled', 'ajax'));
         }
-        die('0');
+
+        if (Tools::getValue('action') !== 'askAboutProd') {
+            $this->renderJson(false, $this->module->l('Invalid request', 'ajax'));
+        }
+
+        $customerMail = trim((string) Tools::getValue('email'));
+        $company = trim((string) Tools::getValue('company'));
+        $phone = trim((string) Tools::getValue('phone'));
+        $idProduct = (int) Tools::getValue('id_product');
+        $ask = trim((string) Tools::getValue('ask'));
+
+        if (!$customerMail || !$idProduct) {
+            $this->renderJson(false, $this->module->l('E-mail and product are required', 'ajax'));
+        }
+
+        if (!Validate::isEmail($customerMail)) {
+            $this->renderJson(false, $this->module->l('Invalid e-mail address', 'ajax'));
+        }
+
+        if ($phone !== '' && !Validate::isPhoneNumber($phone)) {
+            $this->renderJson(false, $this->module->l('Invalid phone number', 'ajax'));
+        }
+
+        if ($company !== '' && !Validate::isGenericName($company)) {
+            $this->renderJson(false, $this->module->l('Invalid company name', 'ajax'));
+        }
+
+        if ($ask === '' || !Validate::isCleanHtml($ask)) {
+            $this->renderJson(false, $this->module->l('Invalid question content', 'ajax'));
+        }
+
+        $idLang = (int) $this->context->language->id;
+        $product = new Product($idProduct, false, $idLang);
+        if (!Validate::isLoadedObject($product)) {
+            $this->renderJson(false, $this->module->l('Product not found', 'ajax'));
+        }
+
+        $productName = is_array($product->name) ? reset($product->name) : $product->name;
+        $productLink = $this->context->link->getProductLink($product);
+
+        $templateVars = [
+            '{product}' => Tools::safeOutput($productName),
+            '{product_link}' => $productLink,
+            '{phone}' => Tools::safeOutput($phone),
+            '{company}' => Tools::safeOutput($company),
+            '{customerMail}' => Tools::safeOutput($customerMail),
+            '{ask}' => nl2br(Tools::safeOutput($ask)),
+        ];
+
+        $sent = Mail::Send(
+            $idLang,
+            'ask_product',
+            $this->module->l('Question about product', 'ajax') . ': ' . $productName,
+            $templateVars,
+            Configuration::get('PS_SHOP_EMAIL'),
+            null,
+            null,
+            null,
+            null,
+            null,
+            _PS_MODULE_DIR_ . $this->module->name . '/mails/',
+            false,
+            (int) $this->context->shop->id,
+            null,
+            $customerMail
+        );
+
+        if (!$sent) {
+            $this->renderJson(false, $this->module->l('Your e-mail could not be sent. Please try again later.', 'ajax'));
+        }
+
+        $this->renderJson(true, $this->module->l('Your e-mail has been sent successfully', 'ajax'));
     }
 
-
+    private function renderJson($success, $message)
+    {
+        header('Content-Type: application/json');
+        exit(json_encode([
+            'success' => (bool) $success,
+            'message' => $message,
+        ]));
+    }
 }
-

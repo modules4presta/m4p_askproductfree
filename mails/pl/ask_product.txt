@@ -1,7 +1,10 @@
- 
-
 Witaj
 
-Nowe zapytanie o produkt {product} 
-{phone----------------
-{question}
+Nowe zapytanie o produkt: {product}
+
+E-mail: {customerMail}
+Telefon: {phone}
+Firma: {company}
+
+Treść zapytania:
+{ask}

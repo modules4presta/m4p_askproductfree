@@ -1,7 +1,10 @@
-[{shop_url}] 
+Hello
 
-Witaj
+New question about product: {product}
 
-Nowe zapytanie o produkt {product} 
-{phone----------------
-{question}
+E-mail: {customerMail}
+Phone: {phone}
+Company: {company}
+
+Question:
+{ask}

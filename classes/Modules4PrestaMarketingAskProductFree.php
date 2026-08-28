@@ -13,6 +13,10 @@
  *  @license   ALL RIGHTS RESERVED
  */
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class Modules4PrestaMarketingAskProductFree
 {
     public static function checkServerRequirements()
@@ -21,85 +25,53 @@ class Modules4PrestaMarketingAskProductFree
         $phpVersion = phpversion();
         $prestashopVersion = _PS_VERSION_;
 
-        if ($ionCubeLoaderEnabled && version_compare($phpVersion, '7.0.0', '>=') && version_compare($prestashopVersion, '1.7.0.0', '>=')) {
+        if ($ionCubeLoaderEnabled && version_compare($phpVersion, '7.3.0', '>=') && version_compare($prestashopVersion, '1.7.0.0', '>=')) {
             return 'Server meets the requirements';
-        } else {
-
-            $requirements = [];
-
-            if (!$ionCubeLoaderEnabled) {
-                $requirements[] = [
-                    'name' => 'IonCube Loader',
-                    'status' => 0
-                ];
-            }
-            else {
-                $requirements[] = [
-                    'name' => 'IonCube Loader',
-                    'status' => 1
-                ];
-            }
-
-            if (version_compare($phpVersion, '7.3.0', '<')) {
-                $requirements[] = [
-                    'name' => 'PHP min 7.3.0',
-                    'status' => 0
-                ];
-            }
-            else {
-                $requirements[] = [
-                    'name' => 'PHP min 7.3.0',
-                    'status' => 1
-                ];
-            }
-
-            if (version_compare($prestashopVersion, '1.7.0.0', '<')) {
-
-                $requirements[] = [
-                    'name' => 'PrestaShop version is min requirements 1.7.0.0',
-                    'status' => 0
-                ];
-            }
-            else {
-                $requirements[] = [
-                    'name' => 'PrestaShop version is min requirements 1.7.0.0',
-                    'status' => 0
-                ];
-            }
-
-            return $requirements;
         }
+
+        $requirements = [];
+
+        $requirements[] = [
+            'name' => 'IonCube Loader',
+            'status' => $ionCubeLoaderEnabled ? 1 : 0,
+        ];
+
+        $requirements[] = [
+            'name' => 'PHP min 7.3.0',
+            'status' => version_compare($phpVersion, '7.3.0', '>=') ? 1 : 0,
+        ];
+
+        $requirements[] = [
+            'name' => 'PrestaShop version is min requirements 1.7.0.0',
+            'status' => version_compare($prestashopVersion, '1.7.0.0', '>=') ? 1 : 0,
+        ];
+
+        return $requirements;
     }
-    public static function getAdsFromModules4Presta(){
 
-
+    public static function getAdsFromModules4Presta()
+    {
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://modules4presta.io/index.php?action=getAdsForModul&fc=module&module=mfp_license_manager&controller=ajax&modulename='.urlencode('m4p_msclarityfree'),
+            CURLOPT_URL => 'https://modules4presta.io/index.php?action=getAdsForModul&fc=module&module=mfp_license_manager&controller=ajax&modulename=' . urlencode('m4p_askproductfree'),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
+            CURLOPT_MAXREDIRS => 3,
+            CURLOPT_CONNECTTIMEOUT => 3,
+            CURLOPT_TIMEOUT => 5,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-
         ));
 
         $response = curl_exec($curl);
-
         curl_close($curl);
 
-        return json_decode($response,true);
+        if ($response === false) {
+            return [];
+        }
 
-    }
-    public function getRequaiermentsTemplate() {
+        $decoded = json_decode($response, true);
 
-        $this->context->smarty->assign([
-            'requaierments' => $this->checkServerRequirements(),
-
-        ]);
-
-        return $this->content = $this->context->smarty->fetch(_PS_MODULE_DIR_ . 'mfp_license_manager/views/templates/admin/modulesforpresta.tpl');
+        return is_array($decoded) ? $decoded : [];
     }
 }
