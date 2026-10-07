@@ -1,0 +1,10 @@
+Hello
+
+New question about product: {product}
+
+E-mail: {customerMail}
+Phone: {phone}
+Company: {company}
+
+Question:
+{ask}

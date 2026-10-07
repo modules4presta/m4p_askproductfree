@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>m4p_askproductfree</name>
+	<displayName><![CDATA[M4P Ask About Product]]></displayName>
+	<version><![CDATA[2.0.0]]></version>
+	<description><![CDATA[Adds an "ask about this product" button to the product page and mails the enquiry to the shop.]]></description>
+	<author><![CDATA[Modules4Presta]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+</module>

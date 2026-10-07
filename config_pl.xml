@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>m4p_askproductfree</name>
+	<displayName><![CDATA[Zapytaj o produkt]]></displayName>
+	<version><![CDATA[2.0.0]]></version>
+	<description><![CDATA[Dodaje na karcie produktu przycisk „zapytaj o produkt" i wysyła zapytanie mailem do sklepu.]]></description>
+	<author><![CDATA[Modules4Presta]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+</module>

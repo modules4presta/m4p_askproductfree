@@ -1,0 +1,114 @@
+/*
+ * m4p_askproductfree
+ *
+ * @author    Modules4Presta <contact@modules4presta.io>
+ * @copyright 2026 Nice Code sp. z o.o. (Modules4Presta)
+ * @license   https://opensource.org/licenses/MIT MIT License
+ */
+
+.m4p-askproduct { margin-top: 1rem; }
+
+.m4p-askproduct__modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.m4p-askproduct__modal[hidden] { display: none; }
+
+.m4p-askproduct__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 24, 61, .55);
+}
+
+.m4p-askproduct__dialog {
+    position: relative;
+    width: 94%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px 28px 28px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+    animation: m4pAskIn .2s ease;
+}
+
+.m4p-askproduct__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .9);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    font-size: 24px;
+    line-height: 32px;
+    color: #0d183d;
+    cursor: pointer;
+}
+
+.m4p-askproduct__title {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0d183d;
+}
+
+.m4p-askproduct__product {
+    margin: 0 0 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e8ecf1;
+    font-size: 14px;
+    color: #38424f;
+}
+
+.m4p-askproduct__product-label { color: #647180; }
+
+/* The theme does not always give .form-group a margin, so the spacing between
+   fields is set here instead of being inherited. */
+.m4p-askproduct__form .form-group {
+    margin: 0 0 18px;
+    display: block;
+}
+
+.m4p-askproduct__form .form-control-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.m4p-askproduct__form .form-control {
+    display: block;
+    width: 100%;
+}
+
+.m4p-askproduct__form textarea.form-control { resize: vertical; }
+
+.m4p-askproduct__message {
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.m4p-askproduct__message--ok { background: #e2f1ee; color: #0c6f63; }
+
+.m4p-askproduct__message--error { background: #fbe9ef; color: #8e0f3e; }
+
+.m4p-askproduct__send { min-width: 140px; }
+
+.m4p-askproduct__send[disabled] { opacity: .6; cursor: progress; }
+
+body.m4p-askproduct-open { overflow: hidden; }
+
+@keyframes m4pAskIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+}

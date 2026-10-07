@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="module" source-language="en-US" target-language="en-US" datatype="plaintext">
+    <body>
+      <trans-unit id="11cbd9ec2e4b628c371094b6361b9c96">
+        <source>Your e-mail has been sent successfully</source>
+        <target>Your e-mail has been sent successfully</target>
+      </trans-unit>
+      <trans-unit id="6cec0d7f95fa3a4b3254ff11c15df8c3">
+        <source>Your e-mail could not be sent. Please check the name and e-mail address and try again.</source>
+        <target>Your e-mail could not be sent. Please check the name and e-mail address and try again.</target>
+      </trans-unit>
+      <trans-unit id="e3b26b08857a2f5bb06e33ec296e9b83">
+        <source>Question about product</source>
+        <target>Question about product</target>
+      </trans-unit>
+      <trans-unit id="fc8a3ca775f59a9ab2ca67bee6401463">
+        <source>Module is disabled</source>
+        <target>Module is disabled</target>
+      </trans-unit>
+      <trans-unit id="446b416d535ed3f547fcd653dc11d49c">
+        <source>Invalid request</source>
+        <target>Invalid request</target>
+      </trans-unit>
+      <trans-unit id="4785095bb0eed0a5c5c91f6aad948cb0">
+        <source>E-mail and product are required</source>
+        <target>E-mail and product are required</target>
+      </trans-unit>
+      <trans-unit id="6e659c47c94d1e1dc7121859f43fb2b0">
+        <source>Invalid e-mail address</source>
+        <target>Invalid e-mail address</target>
+      </trans-unit>
+      <trans-unit id="00589e3bb6d7bbb598f17fe9bfe70052">
+        <source>Invalid phone number</source>
+        <target>Invalid phone number</target>
+      </trans-unit>
+      <trans-unit id="f518d6efc432b3756ace71fd696d0b65">
+        <source>Invalid company name</source>
+        <target>Invalid company name</target>
+      </trans-unit>
+      <trans-unit id="ec0f7b1a6f011cb68b9305a0144f6e50">
+        <source>Invalid question content</source>
+        <target>Invalid question content</target>
+      </trans-unit>
+      <trans-unit id="dfbe69c6d9568ecb0e65e7b32ed92a3a">
+        <source>Product not found</source>
+        <target>Product not found</target>
+      </trans-unit>
+      <trans-unit id="1ea7aa3b91edd2e121ab2e1123f9c71a">
+        <source>Your e-mail could not be sent. Please try again later.</source>
+        <target>Your e-mail could not be sent. Please try again later.</target>
+      </trans-unit>
+      <trans-unit id="96fe4ac310724dd6c70dbd0a5b6f2255">
+        <source>Ask about product</source>
+        <target>Ask about product</target>
+      </trans-unit>
+      <trans-unit id="d3d2e617335f08df83599665eef8a418">
+        <source>Close</source>
+        <target>Close</target>
+      </trans-unit>
+      <trans-unit id="deb10517653c255364175796ace3553f">
+        <source>Product</source>
+        <target>Product</target>
+      </trans-unit>
+      <trans-unit id="625f93a63da35ee7150341160460f31e">
+        <source>Your e-mail</source>
+        <target>Your e-mail</target>
+      </trans-unit>
+      <trans-unit id="1c76cbfe21c6f44c1d1e59d54f3e4420">
+        <source>Company</source>
+        <target>Company</target>
+      </trans-unit>
+      <trans-unit id="1f8261d17452a959e013666c5df45e07">
+        <source>Phone number</source>
+        <target>Phone number</target>
+      </trans-unit>
+      <trans-unit id="352519cba02e5e9ce17b9477a012e87c">
+        <source>Your question</source>
+        <target>Your question</target>
+      </trans-unit>
+      <trans-unit id="94966d90747b97d1f0f206c98a8b1ac3">
+        <source>Send</source>
+        <target>Send</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
